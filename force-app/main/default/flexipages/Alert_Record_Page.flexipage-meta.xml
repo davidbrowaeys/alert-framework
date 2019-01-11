@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>collapsed</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentName>force:highlightsPanel</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>force:detailPanel</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>detailTabContent</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;span style=&quot;font-size:18px;&quot;&gt;&lt;b&gt;Overview&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+This alert framework can be used in many different ways:&amp;nbsp;
+&lt;ol&gt;
+	&lt;li&gt;&lt;i&gt;Dynamic Rule&lt;/i&gt; : define custom validation rule against custom object values by defining a set of criteria in order to warn user. The crtieria are based on the record and will disappear only if the user corret that data.&amp;nbsp;&lt;/li&gt;
+	&lt;li&gt;&lt;i&gt;Backend Alert&lt;/i&gt; : you can also create a specific alert using workflow, apex trigger, or calling the standard Salesforce Rest API. This is good for external system such as OCH or NAB View if we want to alert a banker from something happening out of salesforce.&amp;nbsp;​​​​​​A alert can be assigned to a specific record and/or a sepcific user.&amp;nbsp;&lt;/li&gt;
+	&lt;li&gt;&lt;i&gt;Promote Tips&lt;/i&gt; : This is also an easy way to promote some good tips for new release.&amp;nbsp;&lt;/li&gt;
+&lt;/ol&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;b&gt;&lt;span style=&quot;font-size:18px;&quot;&gt;Alert Setting&lt;/span&gt;&lt;/b&gt;&lt;br /&gt;
+&lt;i&gt;Category&lt;/i&gt;&lt;br /&gt;
+Define were the alert will appear, we can either use object name such as Account, Contact, ... or Home&amp;nbsp; in order to display alerts within home page. We can extends this list by adding more values to the picklist.&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;Type&lt;/i&gt;&amp;nbsp;&lt;br /&gt;
+You can the type of the alert usin g the following 4 values:&amp;nbsp;
+&lt;ul&gt;
+	&lt;li&gt;Error&lt;/li&gt;
+	&lt;li&gt;Warning&lt;/li&gt;
+	&lt;li&gt;Information&lt;/li&gt;
+	&lt;li&gt;Tip&lt;/li&gt;
+&lt;/ul&gt;
+Display Type
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;i&gt;List&lt;/i&gt; : the alerts will appear within the lightning component in accordion mode.&amp;nbsp;&lt;/li&gt;
+	&lt;li&gt;&lt;i&gt;Popup&lt;/i&gt; : used for more important alerts that required more attention for the users. The popup will appear only if there are any alert to display.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;i&gt;Filter Logic&lt;/i&gt;&lt;br /&gt;
+Use to setup dyanmic alert based on Alert Criteria. If set to &lt;i&gt;ALL&lt;/i&gt;, all critertia must meet of set to &lt;i&gt;ANY&lt;/i&gt;, only one criteria must meet.&amp;nbsp;&lt;i&gt;Subject&lt;/i&gt;&lt;br /&gt;
+Display a very short description&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;Description&lt;/i&gt;&lt;br /&gt;
+Display a very long description. Field is supporting rich text, and most importantly merge fields such as {{Phone}} or using cross object {{Account.Phone}}. Description can also display the name of the fields that are not valid by specifying&amp;nbsp;{{missfields}}, this will be display as follow : Phone - Mobile - Email&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;User&lt;/i&gt;&lt;br /&gt;
+This can be use to assign an alert to a specific user. If set, only the user assigned will see the alerts.&amp;nbsp;&lt;br /&gt;
+&lt;br /&gt;
+&lt;i&gt;Parent ID&lt;/i&gt;&lt;br /&gt;
+This is only available in the backend. This can be used to assign an . alert to a very specific record.&amp;nbsp;&lt;br /&gt;
+&lt;br /&gt;
+Action Type&lt;br /&gt;
+This can be set either as Link or Component.&amp;nbsp;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Link : use to redirect users to a n external or internal url. In this case&amp;nbsp;Action Link is required. Examples :&amp;nbsp;
+	&lt;ul&gt;
+		&lt;li&gt;/lightning/r/Account/{{AccountId}}/edit&lt;/li&gt;
+		&lt;li&gt;/lightning/r/Account/{{AccountId}}/view&lt;/li&gt;
+		&lt;li&gt;/lightning/o/Task/new&lt;/li&gt;
+		&lt;li&gt;/lightning/o/Event/new&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;Component : use to popup a specific lightning component in a modal. In this case, Component Name and Component Params are required.&amp;nbsp;
+	&lt;ul&gt;
+		&lt;li&gt;Component Name : should be set with the api name of the lightning component&lt;/li&gt;
+		&lt;li&gt;Component Params is under the form of a json object, this also use merge fields,&amp;nbsp;i.e.: {&amp;quot;recordId&amp;quot;:&amp;quot;{{AccountId}}&amp;quot;}&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p&gt;&lt;span style=&quot;font-size:18px;&quot;&gt;&lt;b&gt;Alert Criteria Setting&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+&lt;i&gt;Field Name&lt;/i&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;Refer to api name of a field using object manager.&amp;nbsp;&lt;/li&gt;
+	&lt;li&gt;Cross object field is authorized, i.e.: Opportunity.Account.Customer_Number__c&lt;/li&gt;
+	&lt;li&gt;AGGREGATE : if you set name field to AGGREGATE, you can use aggregate expression to perform calculation on related child objects. Check aggregrate expression section for more information&lt;/li&gt;
+&lt;/ol&gt;
+&lt;i&gt;Value&lt;/i&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;Date &amp;amp; Datetime: you can compare date using formula, the reference dates are either TODAY/THIS_MONTH/THIS_WEEK/NOW. You can use expression formula to&amp;nbsp;add or remove&amp;nbsp;&lt;i&gt;x&amp;nbsp;&lt;/i&gt;&amp;nbsp;number of days/months/years.
+
+	&lt;ol&gt;
+		&lt;li&gt;Syntax :&amp;nbsp;
+		&lt;ol&gt;
+			&lt;li&gt;d : days&lt;/li&gt;
+			&lt;li&gt;m : months&lt;/li&gt;
+			&lt;li&gt;y: years&lt;/li&gt;
+			&lt;li&gt;H: hours (only used for datetime)&lt;/li&gt;
+			&lt;li&gt;M: minutes (only used for datetime)&lt;/li&gt;
+		&lt;/ol&gt;
+		&lt;/li&gt;
+		&lt;li&gt;Examples :
+		&lt;ul&gt;
+			&lt;li&gt;one month from today :&amp;nbsp; TODAY|m+1&lt;/li&gt;
+			&lt;li&gt;Monday of current week : THIS_WEEK|d+1&lt;/li&gt;
+			&lt;li&gt;Last month: THIS_MONTH|m-1&lt;/li&gt;
+			&lt;li&gt;2 weeks ago : TODAY[d-14]&lt;/li&gt;
+			&lt;li&gt;30min ago : NOW|M-30&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ol&gt;
+	&lt;/li&gt;
+	&lt;li&gt;Aggregate Expression&amp;nbsp;: use if the field name is seto to &amp;#39;&lt;i&gt;AGGREGATE&lt;/i&gt;&amp;#39;.&amp;nbsp; Allow to perform rollup calculation on child objects.&amp;nbsp;
+	&lt;ol&gt;
+		&lt;li&gt;Format :&amp;nbsp;Aggregate|ChildObject|AggregateField|ParentField|Condition&lt;/li&gt;
+		&lt;li&gt;Examples :&amp;nbsp;
+		&lt;ul&gt;
+			&lt;li&gt;SUM|Drawdown__c|Amount__c|Opportunity__c&lt;/li&gt;
+			&lt;li&gt;COUNT|Opportunity|Id|AccountId|Need__c != null&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ol&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <name>Facet-6b7247c9-d845-45e7-a5c9-058aefa6b4ca</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>active</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>detailTabContent</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Standard.Tab.detail</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-6b7247c9-d845-45e7-a5c9-058aefa6b4ca</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Setup Guide</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>maintabs</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>tabs</name>
+                <value>maintabs</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>parentFieldApiName</name>
+                <value>Alert__c.Id</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListApiName</name>
+                <value>Alert_Criteria__r</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>GRID</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListSingleContainer</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>sidebar</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Alert Record Page</masterLabel>
+    <parentFlexiPage>flexipage__default_rec_L</parentFlexiPage>
+    <sobjectType>Alert__c</sobjectType>
+    <template>
+        <name>flexipage:recordHomeTemplateDesktop</name>
+    </template>
+    <type>RecordPage</type>
+</FlexiPage>
