@@ -1,0 +1,48 @@
+.THIS.myaccordion{
+    background-color:#FFF !important;
+}
+.THIS .slds-accordion__summary-action {
+    font-size: 0.75rem;
+    line-height: 1.25;
+}
+.THIS .slds-p-horizontal_small{
+    font-size: x-small;
+}
+.THIS .slds-icon{
+    width : 20px;
+}
+.THIS .slds-modal__close {
+    top: 0.5rem;
+}
+.THIS li.Warning{
+    background-color : lightyellow;
+}
+.THIS li.Error{
+    background-color : #fdd0d7;
+}
+.THIS .Warning .slds-icon-text-default {
+    fill: rgb(242, 207, 91);
+}
+.THIS .Error .slds-icon-text-default {
+    fill: rgb(194, 57, 52);
+}
+.THIS .Tip .slds-icon-text-default{
+    fill: rgb(4, 132, 75);
+}
+.THIS .Information .slds-icon-text-default{
+    fill: rgb(0, 95, 178)
+}
+.THIS .alertIcon{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 40px;
+}
+.THIS .slds-accordion__section .slds-accordion__summary .slds-accordion__summary-heading .slds-accordion__summary-action span{
+    padding-left:30px !important;
+}
+.THIS .max-button{
+    width:100% !important;
+}
+.THIS .action-container{
+    margin-top: 5px;
+}

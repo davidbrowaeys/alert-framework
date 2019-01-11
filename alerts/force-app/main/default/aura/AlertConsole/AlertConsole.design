@@ -1,0 +1,7 @@
+<design:component>
+    <design:attribute name="category" datasource="Home,Lead,Account,Opportunity" default="Lead" description="Context of the component, i.e.: Account, Home Page"/>	
+    <design:attribute name="pollingRecordUpdate" default="false" description="Poll record update every sec"/>
+    <design:attribute name="pollingFrequency" default="2000" description="Poll frequency(millisecond)"/>
+    <design:attribute name="popupBanner" datasource="error,warning,inverse,success,info,offline,shade,inverse,alt-inverse" default="error" description="Set the background color of the popup header"/>
+    <design:attribute name="actioncontainersize" default="100%" description="Define size of the action button in px or %"/>
+</design:component>

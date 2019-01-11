@@ -1,0 +1,37 @@
+<aura:component controller="AlertConsoleController">
+    <aura:attribute name="alerts" type="List" />
+    <aura:attribute name="componentName" type="String" />
+    <aura:attribute name="componentParams" type="Object" />
+    <aura:attribute name="isOpen" type="Boolean" default="false"/>
+    <aura:attribute name="actioncontainersize" type="String" default="100%"/>
+
+    <lightning:accordion aura:id="myaccordion" 
+                         class="myaccordion" 
+                         allowMultipleSectionsOpen="true"
+                         activeSectionName="none">
+        <aura:iteration items="{!v.alerts}" var="a">
+            <lightning:icon iconName="{!a.Type_Icon__c}" alternativeText="{!a.Type__c}" class="{!a.Type__c+' alertIcon'}"/>
+            <lightning:accordionSection name="{!a.Id}" label="{!a.Subject__c}" class="{!a.Type__c}">
+                <aura:set attribute="actions">
+                    <aura:if isTrue="{!a.Action_Type__c != null}">
+                        <lightning:buttonIcon iconName="utility:right" variant="bare" onclick="{! c.handleActionBtn }" alternativeText="{!a.Action_Label__c}" value="{!a.Id}"/>
+                    </aura:if>
+                    <aura:if isTrue="{!empty(a.Filter_Logic__c)}">
+                        <lightning:buttonIcon iconName="utility:close" variant="bare" onclick="{! c.handleClose }" alternativeText="Hide Alert" value="{!a.Id}"/>
+                    </aura:if>
+                </aura:set>
+                <aura:set attribute="body">
+                    <p><aura:unescapedHtml value="{!a.Description__c}"/></p>
+                    <aura:if isTrue="{!a.Action_Type__c != null}">
+                        <div class="slds-align_absolute-center action-container" style="{! 'width:' + v.actioncontainersize}">
+                            <lightning:button variant="brand" label="{!a.Action_Label__c}" title="{!a.Action_Label__c}" onclick="{! c.handleActionBtn }" value="{!a.Id}" class="max-button"/>
+                        </div>
+                    </aura:if>
+                </aura:set>
+            </lightning:accordionSection>
+        </aura:iteration>
+    </lightning:accordion>
+    <aura:if isTrue="{! v.isOpen }">
+        <c:GlobalModalContainer componentName="{! v.componentName }" componentParams="{! v.componentParams }" isOpen="{! v.isOpen}" componentSize="small"/>
+    </aura:if>
+</aura:component>

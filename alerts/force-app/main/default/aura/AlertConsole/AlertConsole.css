@@ -1,0 +1,18 @@
+.THIS.einstein-header {
+    display: flex;
+    background-color: #bf3e3e;
+	color: #FFF;
+	height: 42px;
+    border-radius: .25rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -7px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 14px;
+    z-index: 1000;
+}
+.THIS .small-icon{
+    width:32px;
+    margin-right:8px;
+}

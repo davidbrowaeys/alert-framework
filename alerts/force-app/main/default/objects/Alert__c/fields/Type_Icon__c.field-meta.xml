@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_Icon__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Type__c, 
+&quot;Information&quot;, &quot;utility:info&quot;, 
+&quot;Warning&quot;, &quot;utility:warning&quot;,
+&quot;Error&quot;,&quot;utility:error&quot;,
+&quot;Tip&quot;,&quot;utility:light_bulb&quot;,
+&quot;utility:warning&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Type Icon</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

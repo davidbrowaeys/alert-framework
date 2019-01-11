@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Aggregate_Count__c</fullName>
+    <externalId>false</externalId>
+    <label>Aggregate Count</label>
+    <summaryFilterItems>
+        <field>Alert_Criteria__c.Field_Name__c</field>
+        <operation>equals</operation>
+        <value>AGGREGATE</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Alert_Criteria__c.Alert__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
