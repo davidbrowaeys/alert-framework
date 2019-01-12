@@ -5,9 +5,6 @@
 * @description Service class to handle alert
 */
 public class AlertService {
-
-    private static List<String> fields = new List<String>();
-    private  static List<String> regexFields = new List<String>();
     /**
     * @author davidbrowaeys[js]
     * @date 01/11/2018
@@ -15,9 +12,13 @@ public class AlertService {
     * @param category alert category
     * @return list of alerts that meet the criteria
     */
+    private static List<String> fields = new List<String>();
+    private  static List<String> regexFields = new List<String>();
+    
     public static Alert__c[] getAlertsByCategory(String category){
-        return [SELECT id, Subject__c, Description__c, Type__c, Type_Icon__c, Parent_ID__c, Filter_Logic__c, Display_Type__c, Action_Type__c, Action_Link__c, Action_Component_Name__c, Action_Component_Params__c, Action_Label__c
-                FROM Alert__c 
+        return [SELECT id, Subject__c, Description__c, Type__c, Type_Icon__c, Parent_ID__c, Filter_Logic__c, 
+                Display_Type__c, Action_Type__c, Action_Link__c, Action_Component_Name__c, Action_Component_Params__c, Action_Label__c,
+                Custom_Filter_Expression__c FROM Alert__c 
                 WHERE Is_Active__c = TRUE
                 AND Parent_ID__c = null AND Category__c=: category
                 AND (User__c =: Userinfo.getUserId() OR User__c = null)
@@ -33,8 +34,9 @@ public class AlertService {
     * @return list of alerts that meet the criteria
     */
     public static Alert__c[] getAlertsByObject(String category, String parentId){
-        return [SELECT 	id, Subject__c, Description__c, Type__c, Type_Icon__c, Parent_ID__c, Filter_Logic__c, Display_Type__c, Action_Type__c, Action_Link__c, Action_Component_Name__c, Action_Component_Params__c, Action_Label__c,
-                		(SELECT Id, Field_Name__c, Operator__c, Value__c, Aggregate_Expression__c FROM Alert_Criteria__r)
+        return [SELECT  id, Subject__c, Description__c, Type__c, Type_Icon__c, Parent_ID__c, Filter_Logic__c, Display_Type__c, Action_Type__c, Action_Link__c, Action_Component_Name__c, Action_Component_Params__c, Action_Label__c,
+                        Custom_Filter_Expression__c, (SELECT Id, Field_Name__c, Operator__c, Value__c, Aggregate_Expression__c, Criteria_Number__c FROM Alert_Criteria__r
+                                                     ORDER BY Criteria_Number__c ASC)
                 FROM Alert__c 
                 WHERE Is_Active__c = TRUE 
                 AND Category__c =: category
@@ -52,7 +54,7 @@ public class AlertService {
     */
     public static Alert__c getAlertById(String alertId){
         return [SELECT id, Subject__c, Description__c, Type__c, Type_Icon__c, Parent_ID__c, User__c 
-                	FROM Alert__c
+                    FROM Alert__c
                     WHERE id =: alertId];
     }
     /**
@@ -64,6 +66,7 @@ public class AlertService {
     * @return list of alerts that meet the criteria
     */
     public static Alert__c[] getRecordAlerts(String category, String recordId){
+        BooleanEvaluate boolEval =null;
         if (String.isBlank(recordId)){  //no record id specified
             return getAlertsByCategory(category);
         }
@@ -82,16 +85,22 @@ public class AlertService {
                 continue;
             }
              //filter logic works along with alert criteria, all alert are considered are consider as true by default        
-          	List<String> fieldsInError = new List<String>();
+            List<String> fieldsInError = new List<String>();
+            Map<Integer, Boolean> criteriaResultsMap = new Map<Integer, Boolean>();
             for (Alert_Criteria__c c : r.Alert_Criteria__r){
-                if (processRuleCriteria(c,record,aggregateResults) == true){
+                if(processRuleCriteria(c,record,aggregateResults) == true){
                     fieldsInError.add(c.Field_Name__c);
                 }
+                if(r.Filter_Logic__c == 'Custom'){//custom filter
+                	criteriaResultsMap.put(Integer.valueOf(c.Criteria_Number__c), processRuleCriteria(c,record,aggregateResults));
+                }
             }
-            if ( 	(r.Filter_Logic__c == 'All' && fieldsInError.size() == r.Alert_Criteria__r.size() ) ||
-                	(r.Filter_Logic__c == 'Any' && fieldsInError.size() >= 1 )){//should this be greater than or equal to 1?
+            if (    (r.Filter_Logic__c == 'All' && fieldsInError.size() == r.Alert_Criteria__r.size() ) ||
+                    (r.Filter_Logic__c == 'Any' && fieldsInError.size() >= 1 )||
+                    (r.Filter_Logic__c == 'Custom' && criteriaResultsMap.size() >= 1 )){
+                
                 for (String f : regexFields){
-					Object value = getFieldValue(record, f.split('\\.'), 0);
+                    Object value = getFieldValue(record, f.split('\\.'), 0);
                     if (r.Description__c != null) r.Description__c = r.Description__c.replaceAll('\\{\\{'+f+'\\}\\}', String.valueOf(value));
                     if (r.Action_Type__c == 'Link' &&  r.Action_Link__c != null) r.Action_Link__c = r.Action_Link__c.replaceAll('\\{\\{'+f+'\\}\\}', String.valueOf(value));
                     if (r.Action_Type__c == 'Component' && r.Action_Component_Params__c != null) r.Action_Component_Params__c = r.Action_Component_Params__c.replaceAll('\\{\\{'+f+'\\}\\}', String.valueOf(value));
@@ -101,7 +110,17 @@ public class AlertService {
                     String labels = findLabelsToDisplay(record,fieldsInError);
                     r.Description__c = r.Description__c.replaceAll('\\{\\{missingfields\\}\\}',labels);
                 }
-                alerts.add(r); //crtieria are validated, we can add the alerts  
+                if (r.Filter_Logic__c == 'Custom'){
+                    //start of evaluate expression
+		            boolEval = new BooleanEvaluate(r.Custom_Filter_Expression__c, criteriaResultsMap.values());
+                    boolEval.evaluate();
+                    //end of evaluate expression
+            	}
+                
+                if((boolEval!= null && r.Filter_Logic__c == 'Custom' && boolEval.finalResult) ||
+                   (r.Filter_Logic__c == 'Any' || r.Filter_Logic__c == 'All')){    
+                	alerts.add(r); //crtieria are validated, we can add the alerts 
+                }
             }
         }
         return alerts;
@@ -109,7 +128,8 @@ public class AlertService {
     public static String findLabelsToDisplay(SObject record, List<String> regexFields){
         String labels = '';
         for (String f : regexFields){
-            labels += getFieldLabel(record, f.split('\\.'),0) + ', '; //updated 3/12/2018 DYU - Replace hyphen with comma
+            if(f != 'RecordType.Name')  //exclude record type name on the missing fields
+            	labels += getFieldLabel(record, f.split('\\.'),0) + ', '; //updated 3/12/2018 DYU - Replace hyphen with comma
         }
         return labels.removeEnd(', ');
     }
@@ -144,7 +164,7 @@ public class AlertService {
         Pattern ptrn = Pattern.compile(Constants.MERGEFIELDREGEX); 
         Matcher matcher = ptrn.matcher(s);
         while (matcher.find()) { 
-	        String f = matcher.group().replaceAll('[\\{,\\}]','');
+            String f = matcher.group().replaceAll('[\\{,\\}]','');
             if (fields.contains(f) == false && f != 'missingfields'){
                 fields.add(f);
                 regexFields.add(f);
@@ -174,17 +194,17 @@ public class AlertService {
                         //Quoting the merge field makes it literal text. In order to get the merge field to work, you have to quote the quotes
                         String query = String.format('SELECT {0}({2})result FROM {1} WHERE {3} = \'\'{5}\'\' {4} GROUP BY {3}',
                                                    new String[]{
-                                                       attributes[0],	//AGR function
-                                                       attributes[1],	//Child object
-                                                       attributes[2],	//Aggregate field
-                                                       attributes[3],	//ParentField
-                                                       attributes[4],	//Condition
+                                                       attributes[0],   //AGR function
+                                                       attributes[1],   //Child object
+                                                       attributes[2],   //Aggregate field
+                                                       attributes[3],   //ParentField
+                                                       attributes[4],   //Condition
                                                        recordId
                                                    });
                         aggregateAlerts.put(c.Id,query);
                         break;      //make sure we have only one SOQL per alert
                     }
-            	}   
+                }   
             }catch(Exception e){
                 System.debug('Error for parsing aggregate function. Alert will be ignored!');
             }
@@ -224,7 +244,7 @@ public class AlertService {
                 return false;
             }
         }else{
-            leftValue = getFieldValue(record, criteria.Field_Name__c.split('\\.'), 0);	//this is to cover cross object Opportunity.Account.Customer_Number__c
+            leftValue = getFieldValue(record, criteria.Field_Name__c.split('\\.'), 0);  //this is to cover cross object Opportunity.Account.Customer_Number__c
             rightValue = criteria.Value__c;
         }
         switch on criteria.Operator__c {
@@ -271,6 +291,7 @@ public class AlertService {
         return (String) o != p;
     }
     public static Boolean isequals(Object o, String p){
+        system.debug('***instance '+o+'-'+p);
         if(o instanceof Date)               return (Date) o == (p != null ? parseDate(p) : null);
         if(o instanceof Datetime)           return (Datetime) o == (p != null ? parseDatetime(p) : null);
         if(o instanceof Integer)            return (Integer) o == (p != null ? Integer.valueOf(p) : null);
