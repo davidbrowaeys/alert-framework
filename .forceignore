@@ -3,3 +3,8 @@
 #
 
 package.xml
+**/jsconfig.json
+
+**/.eslintrc.json
+force-app/main/default/applications/Account.app-meta.xml
+force-app/main/default/appMenus/AppSwitcher.appMenu-meta.xml

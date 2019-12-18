@@ -32,6 +32,6 @@
         </aura:iteration>
     </lightning:accordion>
     <aura:if isTrue="{! v.isOpen }">
-        <c:GlobalModalContainer componentName="{! v.componentName }" componentParams="{! v.componentParams }" isOpen="{! v.isOpen}" componentSize="small"/>
+        <!-- <c:GlobalModalContainer componentName="{! v.componentName }" componentParams="{! v.componentParams }" isOpen="{! v.isOpen}" componentSize="small"/> -->
     </aura:if>
 </aura:component>

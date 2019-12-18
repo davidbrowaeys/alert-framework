@@ -31,7 +31,7 @@ public class AlertConsoleController {
         }else if (alert.User__c == null){//the alert belong to business support
             insert new Alert_User_Option__c (Alert__c = alert.Id, User__c = Userinfo.getUserId());
         }else { //current user is not authorised to delete alerts. System admin or Business support should be able to delete alert from Alert tab
-            throw new SystemException('You are not authorize to perform this action.');
+            throw new IllegalArgumentException('You are not authorize to perform this action.');
         }   
     }
 }

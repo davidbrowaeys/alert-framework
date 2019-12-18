@@ -53,7 +53,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <label>Alert Criteria</label>
     <nameField>
-        <displayFormat>{00000000}</displayFormat>
+        <displayFormat>AC-{00000000}</displayFormat>
         <label>Alert Rule Number</label>
         <type>AutoNumber</type>
     </nameField>

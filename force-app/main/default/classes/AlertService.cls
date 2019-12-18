@@ -150,7 +150,7 @@ public class AlertService {
     public static String parseFieldsToString(List<Alert__c> rules){
         for (Alert__c r : rules){
             for (Alert_Criteria__c c : r.Alert_Criteria__r){
-                if (fields.contains(c.Field_Name__c) == false && c.Field_Name__c.toLowerCase() != 'aggregate') 
+                if (fields.contains(c.Field_Name__c) == false && c.Field_Name__c != 'aggregate') 
                     fields.add(c.Field_Name__c);
             }
             if (r.Description__c != null) findFieldsInString(r.Description__c);
@@ -161,7 +161,7 @@ public class AlertService {
         return String.join(fields,',');
     }
     public static void findFieldsInString(String s){
-        Pattern ptrn = Pattern.compile(Constants.MERGEFIELDREGEX); 
+        Pattern ptrn = Pattern.compile('\\{\\{(.*?)\\}\\}');
         Matcher matcher = ptrn.matcher(s);
         while (matcher.find()) { 
             String f = matcher.group().replaceAll('[\\{,\\}]','');
@@ -400,7 +400,7 @@ public class AlertService {
                     offset = offset.removeStart('y'); 
                     targetDate = targetDate.addDays(Integer.valueOf(offset));
                 } when else {
-                    throw new SystemException('Unsupported Date Format');
+                    throw new IllegalArgumentException('Unsupported Date Format');
                 }
             } 
         }

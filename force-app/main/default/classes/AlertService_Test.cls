@@ -8,15 +8,9 @@
 private class AlertService_Test {
     
     @testSetup static void setup(){
-        RecordType businessAccont = [SELECT Id,SobjectType,DeveloperName FROM recordtype where DeveloperName ='Business_Account' LIMIT 1];
-        Account a = (Account)TestDataFactory.createSObject(new Account());
-        a.recordtypeid = businessAccont.id;
-        insert a;
+        Account a = (Account)TestDataFactory.createSObject(new Account(),true);
 
-        Opportunity opp = (Opportunity)TestDataFactory.createSObject(new Opportunity());
-        opp.Need__c = 'Funding';
-        opp.Product_Group__c = 'Bills';
-        opp.AccountId = a.Id;
+        Opportunity opp = (Opportunity)TestDataFactory.createSObject(new Opportunity(AccountId = a.Id));
         insert opp;
     }
     @isTest static void test_basic_alerts() {
@@ -86,8 +80,9 @@ private class AlertService_Test {
     }
     
      @isTest static void test_alert_filter_custom(){
-        Account a = [SELECT Id, ABN__c FROM Account LIMIT 1];
-        a.ABN__c = '123';
+        Account a = [SELECT Id, AccountNumber, Type FROM Account LIMIT 1];
+        a.AccountNumber = '123';
+        a.Type = '123';
         update a;
          
         Alert__c alert = (Alert__c)TestDataFactory.createSObject(new Alert__c());
@@ -97,8 +92,8 @@ private class AlertService_Test {
         insert alert;
 
         Alert_Criteria__c[] criteria = new Alert_Criteria__c[]{
-            new Alert_Criteria__c(Criteria_Number__c = 1, Alert__c = alert.Id, Field_Name__c = 'ABN__c', Operator__c = 'equals'),
-        	new Alert_Criteria__c(Criteria_Number__c = 2, Alert__c = alert.Id, Field_Name__c = 'ACN__c', Operator__c = 'equals')
+            new Alert_Criteria__c(Criteria_Number__c = 1, Alert__c = alert.Id, Field_Name__c = 'AccountNumber', Operator__c = 'equals'),
+        	new Alert_Criteria__c(Criteria_Number__c = 2, Alert__c = alert.Id, Field_Name__c = 'Type', Operator__c = 'equals')
         };
         insert criteria;
 
@@ -123,8 +118,6 @@ private class AlertService_Test {
     @isTest static void test_alert_evaluate_criteria(){
 
         Opportunity opp = (Opportunity)TestDataFactory.createSObject(new Opportunity());
-        opp.Need__c = 'Funding';
-        opp.Product_Group__c = 'Bills';
 
         Alert__c alert = (Alert__c)TestDataFactory.createSObject(new Alert__c());
         alert.Category__c = 'Account';
