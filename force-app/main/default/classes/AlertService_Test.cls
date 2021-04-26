@@ -1,5 +1,5 @@
 /**
-* @author davidbrowaeys[js]
+* @author David Browaeys
 * @date 01/11/2018
 * @group Alert
 * @description A test class created to validate the AlertService class. 

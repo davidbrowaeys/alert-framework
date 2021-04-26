@@ -1,0 +1,48 @@
+.myaccordion{
+    background-color:#FFF !important;
+}
+.slds-accordion__summary-action {
+    font-size: 0.75rem;
+    line-height: 1.25;
+}
+.slds-p-horizontal_small{
+    font-size: x-small;
+}
+.slds-icon{
+    width : 20px;
+}
+.slds-modal__close {
+    top: 0.5rem;
+}
+li.Warning{
+    background-color : lightyellow;
+}
+li.Error{
+    background-color : #fdd0d7;
+}
+.Warning .slds-icon-text-default {
+    fill: rgb(242, 207, 91);
+}
+.Error .slds-icon-text-default {
+    fill: rgb(194, 57, 52);
+}
+.Tip .slds-icon-text-default{
+    fill: rgb(4, 132, 75);
+}
+.Information .slds-icon-text-default{
+    fill: rgb(0, 95, 178)
+}
+.alertIcon{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 40px;
+}
+.slds-accordion__section .slds-accordion__summary .slds-accordion__summary-heading .slds-accordion__summary-action span{
+    padding-left:30px !important;
+}
+.max-button{
+    width:100% !important;
+}
+.action-container{
+    margin-top: 5px;
+}

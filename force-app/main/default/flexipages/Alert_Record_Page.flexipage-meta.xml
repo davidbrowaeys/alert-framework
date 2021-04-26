@@ -1,49 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>collapsed</name>
-                <value>false</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>hideChatterActions</name>
-                <value>false</value>
-            </componentInstanceProperties>
-            <componentName>force:highlightsPanel</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>collapsed</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>hideChatterActions</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentName>force:highlightsPanel</componentName>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>force:detailPanel</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>force:detailPanel</componentName>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>detailTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>decorate</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>richTextValue</name>
-                <value>&lt;p&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;Overview&lt;/b&gt;&lt;/p&gt;&lt;p&gt; This alert framework can be used in many different ways:&amp;nbsp;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;i&gt;Dynamic Rule&lt;/i&gt; : define custom validation rule against custom object values by defining a set of criteria in order to warn user. The crtieria are based on the record and will disappear only if the user corret that data.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Backend Alert&lt;/i&gt; : you can also create a specific alert using workflow, apex trigger, or calling the standard Salesforce Rest API. This is good for external system if we want to alert user from something happening out of salesforce.&amp;nbsp;​​​​​​A alert can be assigned to a specific record and/or a specific user.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Promote Tips&lt;/i&gt; : This is also an easy way to promote some good tips for new release.&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:richText</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>decorate</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>richTextValue</name>
-                <value>&lt;b&gt;&lt;span style=&quot;font-size:18px;&quot;&gt;Alert Setting&lt;/span&gt;&lt;/b&gt;&lt;br /&gt;
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;Overview&lt;/b&gt;&lt;/p&gt;&lt;p&gt; This alert framework can be used in many different ways:&amp;nbsp;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;i&gt;Dynamic Rule&lt;/i&gt; : define custom validation rule against custom object values by defining a set of criteria in order to warn user. The crtieria are based on the record and will disappear only if the user corret that data.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Backend Alert&lt;/i&gt; : you can also create a specific alert using workflow, apex trigger, or calling the standard Salesforce Rest API. This is good for external system if we want to alert user from something happening out of salesforce.&amp;nbsp;​​​​​​A alert can be assigned to a specific record and/or a specific user.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Promote Tips&lt;/i&gt; : This is also an easy way to promote some good tips for new release.&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;b&gt;&lt;span style=&quot;font-size:18px;&quot;&gt;Alert Setting&lt;/span&gt;&lt;/b&gt;&lt;br /&gt;
 &lt;i&gt;Category&lt;/i&gt;&lt;br /&gt;
 Define were the alert will appear, we can either use object name such as Account, Contact, ... or Home&amp;nbsp; in order to display alerts within home page. We can extends this list by adding more values to the picklist.&lt;br /&gt;
 &lt;br /&gt;
@@ -94,17 +101,19 @@ This can be set either as Link or Component.&amp;nbsp;&lt;/p&gt;
 	&lt;/ul&gt;
 	&lt;/li&gt;
 &lt;/ul&gt;</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:richText</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>decorate</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>richTextValue</name>
-                <value>&lt;p&gt;&lt;span style=&quot;font-size:18px;&quot;&gt;&lt;b&gt;Alert Criteria Setting&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size:18px;&quot;&gt;&lt;b&gt;Alert Criteria Setting&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
 &lt;i&gt;Field Name&lt;/i&gt;&lt;/p&gt;
 
 &lt;ol&gt;
@@ -150,71 +159,80 @@ This can be set either as Link or Component.&amp;nbsp;&lt;/p&gt;
 	&lt;/ol&gt;
 	&lt;/li&gt;
 &lt;/ol&gt;</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:richText</componentName>
-        </componentInstances>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-6b7247c9-d845-45e7-a5c9-058aefa6b4ca</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>active</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>detailTabContent</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.detail</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-6b7247c9-d845-45e7-a5c9-058aefa6b4ca</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Setup Guide</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>active</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>detailTabContent</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Standard.Tab.detail</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-6b7247c9-d845-45e7-a5c9-058aefa6b4ca</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Setup Guide</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>maintabs</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>tabs</name>
-                <value>maintabs</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tabset</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>tabs</name>
+                    <value>maintabs</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tabset</componentName>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>parentFieldApiName</name>
-                <value>Alert__c.Id</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListApiName</name>
-                <value>Alert_Criteria__r</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relatedListComponentOverride</name>
-                <value>GRID</value>
-            </componentInstanceProperties>
-            <componentName>force:relatedListSingleContainer</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Alert__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Alert_Criteria__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>GRID</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListSingleContainer</componentName>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>sidebar</name>
         <type>Region</type>

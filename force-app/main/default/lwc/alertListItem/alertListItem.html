@@ -1,0 +1,36 @@
+<template>
+    <lightning-accordion-section name={alert.Id} label={alert.Subject__c} class={alert.Type__c}>
+        <!-- <aura:set attribute="actions">
+            <aura:if isTrue="{!a.Action_Type__c != null}">
+                <lightning:buttonIcon iconName="utility:right" variant="bare" onclick="{! c.handleActionBtn }" alternativeText="{!a.Action_Label__c}" value="{!a.Id}"/>
+            </aura:if>
+            <aura:if isTrue="{!empty(a.Filter_Logic__c)}">
+                <lightning:buttonIcon iconName="utility:close" variant="bare" onclick="{! c.handleClose }" alternativeText="Hide Alert" value="{!a.Id}"/>
+            </aura:if>
+        </aura:set> -->
+        <!-- <aura:set attribute="body"> -->
+            <lightning-icon 
+                icon-name={alert.Type_Icon__c} 
+                alternative-text={alert.Type__c} 
+                class={iconClass}>
+            </lightning-icon>
+            <p class="alert-content">
+                <lightning-formatted-rich-text
+                    value={alert.Description__c}>
+                </lightning-formatted-rich-text>
+            </p>
+            <template if:true={alert.Action_Type__c}>
+                <div class="slds-align_absolute-center action-container">
+                    <lightning-button 
+                        variant="brand" 
+                        label={alert.Action_Label__c} 
+                        title={alert.Action_Label__c} 
+                        onclick={handleActionBtn} 
+                        value={alert.Id} 
+                        class="max-button">
+                    </lightning-button>
+                </div>
+            </template>
+        <!-- </aura:set> -->
+    </lightning-accordion-section>
+</template>

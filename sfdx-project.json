@@ -7,7 +7,7 @@
   ],
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "44.0",
+  "sourceApiVersion": "51.0",
   "plugins": {
     "deloitteforce": {
       "defaultdurationdays": "30",

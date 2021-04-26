@@ -1,12 +1,12 @@
 /**
-* @author davidbrowaeys[js]
+* @author David Browaeys
 * @date 01/11/2018
 * @group Alert
 * @description Service class to handle alert
 */
 public class AlertService {
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description This method return a list of alert by category
     * @param category alert category
@@ -26,7 +26,7 @@ public class AlertService {
                 ORDER BY Sort_Order__c ASC NULLS LAST];
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description This method return a list of alert base on a specified category and record id
     * @param category alert category
@@ -46,7 +46,7 @@ public class AlertService {
                 ORDER BY Sort_Order__c ASC NULLS LAST];
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description This method retrieve specific alert
     * @param alertId id of an alert
@@ -58,7 +58,7 @@ public class AlertService {
                     WHERE id =: alertId];
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description This method retrieve list of alert either by category and/or for a specific record. If recordId is not specified, it will only search by category
     * @param category alert category
@@ -141,7 +141,7 @@ public class AlertService {
         return getFieldLabel(record.getSObject(fieldNames[index]),fieldNames, index + 1);
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description This method go to all the alert crtieria and concert all fields referenced into a single string
     * @param rules list of alerts
@@ -172,7 +172,7 @@ public class AlertService {
         }
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description This method parse all alert criteria that are set as aggregate function. Aggregate function are defined on the Alert_Crtieria__c.Aggregate_Expression__c. 
     *   Syntax: Aggregate|ChildObject|AggregateField|ParentField|Condition::AlertCriteriaValue
@@ -225,7 +225,7 @@ public class AlertService {
         return aggregateResults;
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description Evaluate all alert criteria for a specified record
     * @param crteria alert criteria to evaluate
@@ -268,7 +268,7 @@ public class AlertService {
         }
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description Recursive method that retrieve object value of a specified field name, this handle cross object such as Opportunity.Account.Custom_Number__c
     * @param record instance of an sobject
@@ -300,7 +300,7 @@ public class AlertService {
         return (String) o == p;
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description Compare if an entity is smaller than another entity
     * @param o left entity to compare
@@ -316,7 +316,7 @@ public class AlertService {
         return false;
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description Compare if an entity is smaller than another entity
     * @param o left entity to compare
@@ -331,7 +331,7 @@ public class AlertService {
         if(o instanceof Double)             return (Double) o <= (p != null ? Double.valueOf(p) : null);
         return false;
     }/**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description Compare if an entity is greater or equals than another entity
     * @param o left entity to compare
@@ -347,7 +347,7 @@ public class AlertService {
         return false;
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description Compare if an entity is greater than another entity
     * @param o left entity to compare
@@ -363,7 +363,7 @@ public class AlertService {
         return false;
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description This method parse a date string formula into a date based on well defined syntax. 
     * @usage 
@@ -407,7 +407,7 @@ public class AlertService {
         return targetDate != null ? targetDate : Date.valueOf(s);
     }
     /**
-    * @author davidbrowaeys[js]
+    * @author David Browaeys
     * @date 01/11/2018
     * @description This method parse a datetime string formula into a datetime based on well defined syntax. 
     * @usage 

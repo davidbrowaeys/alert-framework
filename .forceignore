@@ -8,3 +8,6 @@ package.xml
 **/.eslintrc.json
 force-app/main/default/applications/Account.app-meta.xml
 force-app/main/default/appMenus/AppSwitcher.appMenu-meta.xml
+
+force-app/main/default/profiles/Custom%3A Support Profile.profile-meta.xml
+force-app/main/default/profiles/Custom%3A Sales Profile.profile-meta.xml

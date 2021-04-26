@@ -1,0 +1,13 @@
+<template>
+    <lightning-accordion data-id="myaccordion" 
+                         class="myaccordion" 
+                         allow-multiple-sections-open="true"
+                         active-section-name="none">
+        <template for:each={alerts} for:item="a">
+            <c-alert-list-item 
+                key={a.Id} 
+                alert={a}>
+            </c-alert-list-item>
+        </template>
+    </lightning-accordion>
+</template>

@@ -239,10 +239,11 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Field_Name__c</fields>
-        <fields>Operator__c</fields>
-        <fields>Value__c</fields>
+        <fields>Criteria_Number__c</fields>
+        <fields>Criteria__c</fields>
         <fields>Aggregate_Expression__c</fields>
+        <fields>LAST_UPDATE</fields>
+        <fields>UPDATEDBY_USER</fields>
         <relatedList>Alert_Criteria__c.Alert__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -251,7 +252,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0w000000JlhG</masterLabel>
+        <masterLabel>00h0p000001BidH</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

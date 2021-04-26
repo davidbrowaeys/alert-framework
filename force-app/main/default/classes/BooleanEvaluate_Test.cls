@@ -1,5 +1,5 @@
 /**
-* @author daveyyu[js]
+* @author David Browaeys
 * @date 12/12/2018
 * @group Alert
 * @description A test class created for BooleanEvaluate class

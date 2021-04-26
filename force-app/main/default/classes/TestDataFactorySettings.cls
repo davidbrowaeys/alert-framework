@@ -1,7 +1,6 @@
 /**
 * @author David Browaeys
 * @description Serves as test data factory for test classes
-* @group SF Offers
 **/
 @isTest
 public class TestDataFactorySettings {

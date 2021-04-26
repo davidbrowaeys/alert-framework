@@ -1,7 +1,6 @@
 /**
 * @author David Browaeys
 * @description Serves as utility class for creating test data for test classes
-* @group SF Offers
 **/
 @isTest
 public with sharing class TestDataFactory {
